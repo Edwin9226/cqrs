@@ -167,5 +167,45 @@ nbdist/
 .ionide
 
 # Support for Project snippet scope
+### Gradle ###
+HELP.md
+.gradle
+/build/
+/bin/
 
-# End of https://www.toptal.com/developers/gitignore/api/java,intellij,netbeans,visualstudiocode
+
+# Ignore Gradle GUI config
+gradle-app.setting
+
+
+# Cache of project
+.gradletasknamecache
+
+# # Work around https://youtrack.jetbrains.com/issue/IDEA-116898
+# gradle/wrapper/gradle-wrapper.properties
+
+### Maven ###
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+.mvn/wrapper/maven-wrapper.jar
+
+### QueryDSL ###
+querydsl
+
+#### helm chart ###
+*.tgz
+*.lock
+
+###  Mac  ###
+.DS_Store
+
+### Sonar  ###
+.scannerwork/
+fwk-base-client/src/main/generated/ec/com/smx/base/entity/
