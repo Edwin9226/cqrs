@@ -6,10 +6,11 @@ import com.banking.account.common.events.AccountOpenedEvent;
 import com.banking.account.common.events.FundsDepositedEvent;
 import com.banking.account.common.events.FundsWithdrawnEvent;
 import com.banking.cqrs.common.domains.AgregateRoot;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Date;
-
+@Data
 @NoArgsConstructor
 public class AccountAggregate extends AgregateRoot {
     private Boolean active;
