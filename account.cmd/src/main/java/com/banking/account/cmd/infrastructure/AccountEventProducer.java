@@ -4,7 +4,9 @@ import com.banking.cqrs.common.events.BaseEvent;
 import com.banking.cqrs.common.producers.EventProducer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
+import org.springframework.stereotype.Service;
 
+@Service
 public class AccountEventProducer implements EventProducer {
 
     //inicializar un template kafka inyectar

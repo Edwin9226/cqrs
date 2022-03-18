@@ -7,9 +7,9 @@ import com.banking.cqrs.common.events.EventModel;
 import com.banking.cqrs.common.exceptions.AggregateNotFoundException;
 import com.banking.cqrs.common.exceptions.ConcurrencyException;
 import com.banking.cqrs.common.infrastructure.EventStore;
+import com.banking.cqrs.common.producers.EventProducer;
 import lombok.val;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.ConcurrencyFailureException;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -23,6 +23,9 @@ public class AccountEventStore implements EventStore {
      */
     @Autowired
     private EventStoreRepository eventStoreRepository;
+
+    @Autowired
+    private EventProducer eventProducer;
 
     @Override
     public void saveEvents(String aggregateId, Iterable<BaseEvent> events, int expectedVersion) {
@@ -44,8 +47,10 @@ public class AccountEventStore implements EventStore {
                   .eventData(event)
                   .build();
           val persistedEvent = eventStoreRepository.save(eventModel);
-          if(persistedEvent != null){
-              // debo llamar al kafka, producir un evento para kafka
+          if(!persistedEvent.getId().isEmpty()){
+              // si quiero que envie hacia kafka la data del data que ya agregaste a mongo
+              // , producir un evento para kafka
+              eventProducer.producer(event.getClass().getSimpleName(), event);
           }
      }
     }
